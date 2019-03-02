@@ -120,6 +120,7 @@ var calculadora = {
     this.a = 0;
     this.b = 0;
     pantalla.innerHTML = "0";
+    punto = false;
     sumando = false;
     restando = false;
     multiplicando = false;
