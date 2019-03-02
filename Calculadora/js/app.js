@@ -1,161 +1,18 @@
-var pantalla = document.getElementById('display'),
-  punto = false,
-  sumando = false,
-  restando = false,
-  multiplicando = false,
-  dividiendo = false,
-  repetir = false;
+var pantalla = document.getElementById('display');
 
 var calculadora = {
   a: 0,
   b: 0,
-  suma: function() {
-    if (sumando == false) {
-      this.b = parseFloat(pantalla.innerHTML);
-    }
-    this.a += this.b;
-    punto = false;
-    pantalla.innerHTML = "0";
-    sumando = true;
-    restando = false;
-    multiplicando = false;
-    dividiendo = false;
-    console.log(this.a);
-    console.log(this.b);
-    return this.a;
-  },
-  resta: function() {
-    if (restando == false) {
-      this.b = parseFloat(pantalla.innerHTML);
-    }
-    this.a -= this.b;
-    punto = false;
-    pantalla.innerHTML = "0";
-    sumando = false;
-    restando = true;
-    multiplicando = false;
-    dividiendo = false;
-    console.log(this.a);
-    console.log(this.b);
-    return this.a;
-  },
-  multiplicacion: function() {
-    if (this.a == 0) {
-      this.a = 1;
-    }
-    this.b = parseFloat(pantalla.innerHTML);
-    this.a *= this.b;
-    punto = false;
-    pantalla.innerHTML = "0";
-    sumando = false;
-    restando = false;
-    multiplicando = true;
-    dividiendo = false;
-    console.log(this.a);
-    console.log(this.b);
-    return this.a;
-  },
-  divicion: function() {
-    this.b = parseFloat(pantalla.innerHTML);
-    this.a /= this.b;
-    punto = false;
-    pantalla.innerHTML = "0";
-    sumando = false;
-    restando = false;
-    multiplicando = false;
-    dividiendo = true;
-    console.log(this.a);
-    console.log(this.b);
-    return this.a;
-  },
-  igual: function() {
-
-    if (repetir === true) {
-      if (sumando === true) {
-        calculadora.suma();
-      } else if (restando === true) {
-        calculadora.resta();
-      } else if (multiplicando === true) {
-        calculadora.multiplicacion();
-      } else if (dividiendo === true) {
-        calculadora.divicion();
-      }
-    } else {
-      repetir = true;
-    }
-
-    if (this.b != 0) {
-      switch (this.a.toString().length) {
-        case 1:
-          pantalla.innerHTML = this.a.toPrecision(1);
-          break;
-        case 2:
-          pantalla.innerHTML = this.a.toPrecision(2);
-          break;
-        case 3:
-          pantalla.innerHTML = this.a.toPrecision(3);
-          break;
-        case 4:
-          pantalla.innerHTML = this.a.toPrecision(4);
-          break;
-        case 5:
-          pantalla.innerHTML = this.a.toPrecision(5);
-          break;
-        case 6:
-          pantalla.innerHTML = this.a.toPrecision(6);
-          break;
-        case 7:
-          pantalla.innerHTML = this.a.toPrecision(7);
-          break;
-        case 8:
-          pantalla.innerHTML = this.a.toPrecision(8);
-          break;
-        default:
-          pantalla.innerHTML = this.a.toExponential(4);
-          break;
-      }
-    }
-  },
-  borrar: function() {
-    this.a = 0;
-    this.b = 0;
-    pantalla.innerHTML = "0";
-    punto = false;
-    sumando = false;
-    restando = false;
-    multiplicando = false;
-    dividiendo = false;
-    console.clear();
-  },
-  escribir: function(a) {
-    if (pantalla.innerHTML.length < 9) {
-      if (pantalla.innerHTML == "0") {
-        pantalla.innerHTML = "";
-        pantalla.innerHTML += a;
-        repetir = false;
-      } else if (pantalla.innerHTML == "0.") {
-        pantalla.innerHTML += a;
-        repetir = false;
-      } else {
-        pantalla.innerHTML += a;
-        repetir = false;
-      }
-    }
-  },
-  escribir0: function(a) {
-    if (pantalla.innerHTML.length < 9) {
-      if (pantalla.innerHTML != 0) {
-        pantalla.innerHTML += 0;
-        repetir = false;
-      }
-    }
-  },
-  escribirPunto: function() {
-    if (punto == false) {
-      pantalla.innerHTML += ".";
-      punto = true;
-    }
-  }
+  c: 0,
+  suma: function() {},
+  resta: function() {},
+  multiplicacion: function() {},
+  divicion: function() {},
+  igual: function() {},
+  borrar: function() {},
+  escribir: function(a) {},
+  escribir0: function(a) {},
+  escribirPunto: function() {}
 };
 /*
  *               Botones
@@ -358,7 +215,6 @@ botones.btnC.addEventListener('mouseup', function() {
  */
 botones.btnMenos.addEventListener('mousedown', function() {
   botones.presionar(botones.btnMenos);
-  restando = false;
   calculadora.menos();
 });
 botones.btnMenos.addEventListener('mouseup', function() {
@@ -369,7 +225,6 @@ botones.btnMenos.addEventListener('mouseup', function() {
  */
 botones.btnPor.addEventListener('mousedown', function() {
   botones.presionar(botones.btnPor);
-  multiplicando = false;
   calculadora.multiplicacion();
 });
 botones.btnPor.addEventListener('mouseup', function() {
@@ -380,7 +235,6 @@ botones.btnPor.addEventListener('mouseup', function() {
  */
 botones.btnDiv.addEventListener('mousedown', function() {
   botones.presionar(botones.btnDiv);
-  dividiendo = false;
   calculadora.divicion();
 });
 botones.btnDiv.addEventListener('mouseup', function() {
@@ -391,7 +245,6 @@ botones.btnDiv.addEventListener('mouseup', function() {
  */
 botones.btnMas.addEventListener('mousedown', function() {
   botones.presionar3(botones.btnMas);
-  sumando = false;
   calculadora.suma();
 });
 botones.btnMas.addEventListener('mouseup', function() {
